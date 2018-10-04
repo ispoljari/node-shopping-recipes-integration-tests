@@ -19,18 +19,20 @@ describe("Shopping List", function() {
   // doing `return runServer`. If we didn't return a promise here,
   // there's a possibility of a race condition where our tests start
   // running before our server has started.
-  before(function() {
-    return runServer();
-  });
+
+  // before(function() {
+  //   return runServer();
+  // });
 
   // although we only have one test module at the moment, we'll
   // close our server at the end of these tests. Otherwise,
   // if we add another test module that also has a `before` block
   // that starts our server, it will cause an error because the
   // server would still be running from the previous tests.
-  after(function() {
-    return closeServer();
-  });
+
+  // after(function() {
+  //   return closeServer();
+  // });
 
   // test strategy:
   //   1. make request to `/shopping-list`
