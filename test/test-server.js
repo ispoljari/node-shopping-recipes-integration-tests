@@ -13,6 +13,8 @@ const expect = chai.expect;
 // see: https://github.com/chaijs/chai-http
 chai.use(chaiHttp);
 
+// test the shopping list
+
 describe("Shopping List", function() {
   // Before our tests run, we activate the server. Our `runServer`
   // function returns a promise, and we return the that promise by
@@ -150,5 +152,41 @@ describe("Shopping List", function() {
           expect(res).to.have.status(204);
         })
     );
+  });
+});
+
+// test Recipes
+
+describe("Recipes", function() {
+
+  // start server before the test's
+
+  before(function() {
+    return runServer();
+  });
+
+  // stop server after the test's are complete
+
+  after(function() {
+    return closeServer();
+  });
+
+  // test the GET endpoint -> return a list of recipes
+  it('should retrieve a list of recipes on GET', function() {
+    return chai
+    .request(app)
+    .get('/recipes')
+    .then(function(res) {
+      expect(res).to.have.status(200);
+      expect(res).to.be.json;
+      expect(res.body).to.be.a('array');
+      expect(res.body.length).to.be.at.least(1);
+
+      const expectedKeys = ['id', 'name', 'ingredients'];
+      res.body.forEach(function(recipe) {
+        expect(recipe).to.be.a('object');
+        expect(recipe).to.include.keys(expectedKeys);
+      });
+    });
   });
 });
