@@ -189,4 +189,23 @@ describe("Recipes", function() {
       });
     });
   });
+
+  // test the POST endpoint
+  it('should create a new recipe on POST', function() {
+    const newRecipe = {'name': 'spaghetti', 'ingredients': ['pasta', 'tomatto sauce']};
+    return chai
+    .request(app)
+    .post('/recipes')
+    .send(newRecipe)
+    .then(function(res) {
+      expect(res).to.have.status(201);
+      expect(res).to.be.json;
+      expect(res.body).to.be.a('object');
+      expect(res.body.ingredients).to.be.a('array');
+      expect(res.body.name).to.equal(newRecipe.name);
+
+      const expectedKeys = ['id', 'name', 'ingredients'];
+      expect(res.body).to.include.keys(expectedKeys);
+    });
+  });
 });
