@@ -1,2 +1,10 @@
 language: node_js
 node_js: node
+deploy:
+  provider: heroku
+  api_key:
+    secure: LTrYbPm827ZmzjHRd/cPjU3E3NfCMmyKZ/uFozMB1mP9ZRfo4NhlJp8kDDmHEczAz0H+IJW2jfg4M2e2iMdCAKYwr5KUU9OECYuevaRCuxE4MpW7RbLjm1rodQ2+nlAY4+ncogOnf4Uep/l+6V48RO4WR8UrLzTlVKCLKtmqxjQCQGVPUuwb2NY5QLACVPUxw8bJF/QAbUPbKuSr0FdByy4/ALja48gCJDxHe6dAlDRtGKwAd23M6FHlDRdPSEofjdo8/D9stlPDICqYVk2mbYkZukkvp4YkfKY41TPVtsZw7Jrv/OHn+kHSm+x494V0l8Ti7EP4CAJ3LWhfA+KZeMkkAo+pa8/I0FZ5MVdqlhYc1VwknsSVafewgeWJyduxxMNE1GPWBqvuKVOJGwYQ4y/GDQRiahzI405yISM5W3T8CYUjFmL/tHy9yrHhbxIM0dnWbeUJFo7ppFrqpNTPD0Qg59XHz2j2twL9PvMCVxl2KYkjeP36LRbtw5hE97wj5dVZGQw3IPKINy5fk9C66hlhKtqsfnifdTYiAj+oZhiDCRW0NbowWWpdWhvQHK0i4fyglM9zIngHvfAFqP9ugcaAwnWllezCUKCVl83PyW/9L237nlqQSugKsCw19tvwwnfqxLjDfKr44w23FLogOhZxF1JaweXKLBL04WJmegA=
+  app: evening-ravine-51810
+  on:
+    repo: ispoljari/node-shopping-recipes-integration-tests
+    branch: test-for-recipes
