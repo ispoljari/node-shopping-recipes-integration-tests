@@ -192,7 +192,7 @@ describe("Recipes", function() {
 
   // test the POST endpoint
   it('should create a new recipe on POST', function() {
-    const newRecipe = {'name': 'spaghetti', 'ingredients': ['pasta', 'tomatto sauce']};
+    const newRecipe = {name: 'spaghetti', ingredients: ['pasta', 'tomatto sauce']};
     return chai
     .request(app)
     .post('/recipes')
@@ -207,5 +207,26 @@ describe("Recipes", function() {
       const expectedKeys = ['id', 'name', 'ingredients'];
       expect(res.body).to.include.keys(expectedKeys);
     });
+  });
+
+  // test the PUT endpoint
+  it('should update an existing recipe on PUT', function() {
+    const updateData = {
+      name: 'example',
+      ingredients: ['a', 'b', 'c']
+    };
+    // get the ID of the first recipe
+    return chai.request(app)
+    .get('/recipes')
+    .then(function(res) {
+      updateData.id = res.body[0].id;
+
+      return chai.request(app)
+      .put(`/recipes/${updateData.id}`)
+      .send(updateData);
+    })
+    .then(function(res) {
+      expect(res).to.have.status(204);
+    }); 
   });
 });
