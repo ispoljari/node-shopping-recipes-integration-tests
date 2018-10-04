@@ -229,4 +229,18 @@ describe("Recipes", function() {
       expect(res).to.have.status(204);
     }); 
   });
+
+  // test the DELETE endpoint
+  it('should delete a recipe on DELETE', function() {
+    // get the ID of the first recipe
+    return chai.request(app)
+    .get('/recipes')
+    .then(function(res) {
+      return chai.request(app)
+      .delete(`/recipes/${res.body[0].id}`)
+    })
+    .then(function(res) {
+      expect(res).to.have.status(204);
+    }); 
+  });
 });
